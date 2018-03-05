@@ -29,4 +29,14 @@ public class Tray {
     public int getStockLevel(){
         return this.stock.size();
     }
+
+    public void addItem(Product product){
+        if(stock.size() < capacity) {
+            stock.add(product);
+        }
+    }
+
+    public Product ejectProduct(){
+        return stock.remove(0);
+    }
 }

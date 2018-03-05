@@ -30,5 +30,31 @@ public class TestTray {
         assertEquals(0, tray.getStockLevel());
     }
 
+    @Test
+    public void canAddNewItem(){
+        Drink drink = new Drink("Irn-Bru", 330);
+        tray.addItem(drink);
+        assertEquals(1, tray.getStockLevel());
+    }
+
+    @Test
+    public void canRemoveItemFromTray(){
+        Drink drink1 = new Drink("Irn-Bru", 330);
+        Drink drink2 = new Drink("Irn-Bru", 330);
+        tray.addItem(drink1);
+        tray.addItem(drink2);
+        Product ejectedDrink = tray.ejectProduct();
+        assertEquals(drink1, ejectedDrink);
+    }
+
+    @Test
+    public void cannotExceedCapacity(){
+        for(int i = 0; i < 20; i++){
+            Drink drink1 = new Drink("Irn-Bru", 330);
+            tray.addItem(drink1);
+        }
+        assertEquals(10, tray.getStockLevel());
+    }
+
 
 }
